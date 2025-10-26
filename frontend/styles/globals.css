@@ -1,0 +1,434 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 17px; /* <-- ADD THIS LINE */
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md border border-gray-200 p-6;
+  }
+
+  .table-header {
+    @apply bg-gray-50 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
+}
+
+/* --- Added Custom Toast Alert Styles --- */
+
+.custom-toast-alert {
+  /* Basic card-like appearance */
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 8px; /* Matching the toastOptions */
+  overflow: hidden; /* Important for the deloading bar to stay within bounds */
+  position: relative;
+  border: none !important; /* Remove default hot-toast border */
+
+  /* Subtle glossy gradient */
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(240, 240, 240, 0.9) 100%
+    ),
+    #ffffff;
+}
+
+/* Deloading bar effect */
+.custom-toast-alert::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px; /* Thickness of the bar */
+  width: 100%; /* Starts full width */
+  animation: deloading-bar var(--hot-toast-duration, 4000ms) linear forwards;
+}
+
+/* Specific bar colors */
+.success-toast::before {
+  background-color: #10b981; /* Green */
+}
+
+.error-toast::before {
+  background-color: #ef4444; /* Red */
+}
+
+/* Add for other types if needed */
+/* .warning-toast::before { background-color: #FBBF24; } */
+/* .info-toast::before { background-color: #3B82F6; } */
+
+@keyframes deloading-bar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Adjust hot-toast's default close button for better integration */
+.custom-toast-alert .Toast__close-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  color: #333;
+}
+
+.custom-toast-alert .Toast__close-button:hover {
+  opacity: 1;
+}
+
+/* Ensure text is clear */
+.custom-toast-alert > div > div {
+  color: #333 !important; /* Ensure main text is dark */
+}
+
+/* Make text a little bolder for titles if needed */
+.custom-toast-alert strong {
+  font-weight: 600; /* Semi-bold */
+}
+
+/* Based on client-dashboard.html and modern design */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* --- Navbar (from screenshot) --- */
+.navbar {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+  background-color: #ffffff;
+  padding: 2rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.dashboard-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dashboard-title h1 {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  margin: 0;
+}
+
+.dashboard-title p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.user-role {
+  font-style: italic;
+  color: #4b5563;
+}
+
+/* --- Buttons --- */
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- Dashboard Content & Cards --- */
+.dashboard-content {
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 0.25rem;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  color: #9ca3af;
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --- Table --- */
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.status-new {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+.status-in-progress {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+.status-completed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+/* --- Activity Feed --- */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.activity-icon {
+  background-color: #eef2ff;
+  color: #4f46e5;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.activity-content p {
+  margin: 0;
+  color: #374151;
+}
+
+.activity-time {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* --- Progress --- */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progress-item {
+  width: 100%;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 99px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background-color: #2563eb;
+  height: 100%;
+  border-radius: 99px;
+}
+
+/* --- Quick Actions --- */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.quick-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  min-width: 140px;
+  text-align: center;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quick-action-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.quick-action-btn i {
+  font-size: 1.5rem;
+  color: #2563eb;
+}
+
+/* Responsive layout for dashboard title */
+@media (min-width: 640px) {
+  .dashboard-title {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

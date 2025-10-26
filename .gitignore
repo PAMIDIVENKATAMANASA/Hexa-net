@@ -1,0 +1,35 @@
+
+# General
+.DS_Store
+*.log
+
+# Dependencies
+/node_modules
+/frontend/node_modules
+/backend/node_modules
+
+# Environment variables (NEVER commit these!) 🔑
+.env
+.env.local
+.env.*.local
+.env.*
+!/.env.example
+frontend/.env
+frontend/.env.local
+backend/.env
+
+# Build files
+/frontend/dist
+/backend/dist
+
+# Logs
+npm-debug.log*
+
+# Specific to frontend (Next.js)
+/frontend/.next
+/frontend/out
+/frontend/build
+
+# Specific to backend (Node.js)
+/backend/dist
+/backend/build
