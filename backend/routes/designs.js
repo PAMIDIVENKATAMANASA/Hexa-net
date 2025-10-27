@@ -52,10 +52,7 @@ router.post('/generate/:requestId', [
     // Populate the design data for response
     await logicDesign.populate('billOfMaterials.device');
 
-    res.status(201).json({
-      message: 'Design generated successfully',
-      design: logicDesign
-    });
+  const finalDesign = logicDesign.toObject({ getters: true }); res.status(201).json({ message: 'Design generated successfully', design: finalDesign });
   } catch (error) {
     console.error('Generate design error:', error);
     res.status(500).json({ message: 'Server error generating design' });
